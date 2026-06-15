@@ -1,0 +1,64 @@
+paths:
+  corpus: data/corpus.jsonl
+  train_queries: data/train_queries.csv
+  train_qrels: data/train_qrels.csv
+  test_queries: data/test_queries.csv
+  work_dir: artifacts
+  submissions_dir: submissions
+  lucene_index: artifacts/lucene_index
+
+text:
+  dense_body_chars: 1500
+  reranker_body_chars: 3000
+  max_keywords: 20
+
+dense:
+  model: BAAI/bge-m3
+  batch_size_per_gpu: 128
+  query_batch_size: 128
+  shard_size: 100000
+  normalize: true
+  use_fp16: true
+  faiss_factory: IVF4096,Flat
+  faiss_nprobe: 64
+  train_vectors: 500000
+
+retrieval:
+  bm25_k: 1000
+  dense_k: 1000
+  candidate_k: 500
+  final_k: 100
+  rrf_k: 60
+  dense_weight_grid:
+    - 0.0
+    - 0.05
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.4
+    - 0.5
+    - 0.6
+    - 0.75
+    - 0.9
+    - 1.0
+    - 1.2
+    - 1.5
+    - 2.0
+    - 3.0
+
+reranker:
+  model: BAAI/bge-reranker-v2-m3
+  device: cuda:0
+  batch_size: 32
+  max_length: 768
+  candidate_k: 500
+  retrieval_score_weight_grid:
+    - 0.0
+    - 0.05
+    - 0.1
+    - 0.2
+    - 0.3
+
+runtime:
+  seed: 42
+  num_workers: 8
