@@ -79,11 +79,4 @@ Completed shards are reused. Retrieval runs are also cached under `artifacts/`.
 To rebuild an artifact, remove only that artifact and rerun its stage.
 
 Lucene, BGE-M3 embeddings, FAISS, and the SQLite document store are built by
-this project. Provenance metadata prevents artifacts from another corpus or
-configuration from being silently reused.
-
-## Important Evaluation Note
-
-Training metrics are useful for diagnostics but optimistic because fusion and
-reranker blending are tuned on the same 234 queries. For reliable model
-selection, the next extension should use query-level cross-validation.
+this project.
