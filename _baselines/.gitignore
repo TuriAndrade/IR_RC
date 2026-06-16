@@ -1,0 +1,21 @@
+# Ignore virtual environments
+.venv/
+
+# Ignore data
+data/
+
+# Ignore logs
+logs/
+
+# Ignore models
+models/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
